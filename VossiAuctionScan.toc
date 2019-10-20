@@ -1,0 +1,10 @@
+## Interface: 11302
+## Title: |cFF00FF00vossi|r Auction Scanner
+## Author: vossi
+## Version: 0.1
+##SavedVariables: VossiScanTable
+VHelper.lua
+VMainGUI.xml
+VMainGUI.lua
+VEventHandler.lua
+VScanAH.lua

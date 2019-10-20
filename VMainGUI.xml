@@ -1,0 +1,130 @@
+<?xml version="1.0" ?>
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ http://wowprogramming.com/FrameXML/UI.xsd">
+
+  <Frame name="VossiAuctionScanFrame" parent="UIParent" inherits="BasicFrameTemplate" hidden="true" movable="false" enableMouse="true">
+    <Size x="300" y="400" />
+    <Anchors>
+      <Anchor point="LEFT" relativeTo="UIParent" relativePoint="RIGHT" x="0" y="0" />
+    </Anchors>
+    <Layers>
+      <Layer level="OVERLAY">
+        <FontString name="VMenuHeader" inherits="GameFontWhite" justifyH="CENTER" justifyV="CENTER" wordwrap="true" nonspacewrap="true" text="vossi auction scanner">
+          <Size>
+            <AbsDimension x="280" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="TOP" relativeTo="VossiAuctionScanFrame">
+              <Offset>
+                <AbsDimension x="0" y="0" />
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="VScanText" inherits="GameFontWhite" justifyH="LEFT" justifyV="TOP" wordwrap="true" nonspacewrap="true" text="Scanning page X of">
+          <Size>
+            <AbsDimension x="280" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="TOP" relativeTo="VossiAuctionScanFrame">
+              <Offset>
+                <AbsDimension x="0" y="-30" />
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="VTimeSpentText" inherits="GameFontWhite" justifyH="LEFT" justifyV="TOP" wordwrap="true" nonspacewrap="true" text="Time spent: 23 min 5 sec">
+          <Size>
+            <AbsDimension x="280" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="TOP" relativeTo="VossiAuctionScanFrame">
+              <Offset>
+                <AbsDimension x="0" y="-50" />
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="VTimePredictText" inherits="GameFontWhite" justifyH="RIGHT" justifyV="TOP" wordwrap="true" nonspacewrap="true" text="Time left: 2 min 0 sec">
+          <Size>
+            <AbsDimension x="280" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="TOP" relativeTo="VossiAuctionScanFrame">
+              <Offset>
+                <AbsDimension x="0" y="-50" />
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="VScanName" inherits="GameFontWhite" justifyH="RIGHT" justifyV="TOP" wordwrap="true" nonspacewrap="true" text="Scan Snapshot Name: 23234">
+          <Size>
+            <AbsDimension x="280" y="20" />
+          </Size>
+          <Anchors>
+            <Anchor point="TOP" relativeTo="VossiAuctionScanFrame">
+              <Offset>
+                <AbsDimension x="0" y="-100" />
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="VScansCount" inherits="GameFontWhite" justifyH="CENTER" justifyV="MIDDLE" wordwrap="true" nonspacewrap="true" text="Scans Stored: 10/10">
+          <Size>
+            <AbsDimension x="280" y="16" />
+          </Size>
+          <Anchors>
+            <Anchor point="BOTTOM" relativeTo="VossiAuctionScanFrame">
+              <Offset>
+                <AbsDimension x="0" y="5" />
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
+
+    <Frames>
+      <Frame name="VScansFrame">
+        <Size x="280" y="230" />
+        <Anchors>
+          <Anchor point="TOP" relativeTo="VossiAuctionScanFrame" relativePoint="TOP">
+            <Offset>
+              <AbsDimension x="0" y="-150" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true" edgeFile="Interface\DialogFrame\UI-DialogBox-Border">
+          <TileSize>
+            <AbsValue val="32" />
+          </TileSize>
+          <EdgeSize>
+            <AbsValue val="32" />
+          </EdgeSize>
+          <BackgroundInsets>
+            <AbsInset left="11" right="12" top="12" bottom="11" />
+          </BackgroundInsets>
+          <Color r="255" g="255" b="255" />
+        </Backdrop>
+      </Frame>
+
+      <Button name="VScanButton" inherits="UIPanelButtonTemplate" text="Start Scan">
+        <Size x="100" y="21" />
+        <Anchors>
+          <Anchor point="BOTTOMLEFT" relativeTo="VScansFrame" relativePoint="TOPLEFT" />
+        </Anchors>
+        <Scripts>
+          <OnClick> ScanButtonClick(); </OnClick>
+        </Scripts>
+      </Button>
+      <Button name="VStoreButton" inherits="UIPanelButtonTemplate" text="Store Scan" enabled="false">
+        <Size x="100" y="21" />
+        <Anchors>
+          <Anchor point="BOTTOMRIGHT" relativeTo="VScansFrame" relativePoint="TOPRIGHT" />
+        </Anchors>
+        <Scripts>
+          <OnClick> StoreButtonClick(); </OnClick>
+        </Scripts>
+      </Button>
+    </Frames>
+  </Frame>
+</Ui>
