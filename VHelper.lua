@@ -53,3 +53,14 @@ function table.removekey(table, key)
     table[key] = nil
     return element
 end
+
+function VCopy_Table(src, dest)
+	for index, value in pairs(src) do
+		if type(value) == "table" then
+			dest[index] = {}
+			VCopy_Table(value, dest[index])
+		else
+			dest[index] = value
+		end
+	end
+end

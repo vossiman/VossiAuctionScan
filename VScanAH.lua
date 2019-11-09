@@ -63,6 +63,8 @@ function readCurrentAuctionPage()
         hasAllInfo = values[18]
         itemId = values[17]
         name = values[1]
+        auctionTimeleft = GetAuctionItemTimeLeft("list", i);
+        values[19] = auctionTimeleft
 
         if (not hasAllInfo or itemId <=0 or not name) then
             dprint('['..i..'] name is null or hasAllInfo = FALSE or itemId <= 0')
@@ -87,16 +89,13 @@ end
 
 function finishAuctionScan(scanCanceled)
     scanStepInProgress = false
-    scanInProgress = false
+    scanInProgress = false    
     updateScanStats(scanCanceled, true)
     local currentItemcount=table.getn(VCurrentScan)
     pprint("Finished Scan, "..currentItemcount.." items ready to store!")
-    if (VStoredScansCount<10) then
-        storeBtn = _G["VStoreButton"]
-        storeBtn:SetEnabled(true)
-    end
-    scanBtn = _G["VScanButton"]
-    scanBtn:SetText("Start scan")      
+    StoreScan()
+    scanBtn:SetText("Start scan")
+    enableStartScan(true)    
     ListScans()
 end
 
@@ -179,6 +178,6 @@ end
 
 function StoreScan(...) 
     scanCount = table.getn(VossiScanTable)
-    VossiScanTable [scanTimestamp] = VCurrentScan
-    VCurrentScan = {}
+    VossiScanTable [scanTimestamp] = {}
+    VCopy_Table(VCurrentScan, VossiScanTable [scanTimestamp])
 end

@@ -2,6 +2,11 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ http://wowprogramming.com/FrameXML/UI.xsd">
 
   <Frame name="VossiAuctionScanFrame" parent="UIParent" inherits="BasicFrameTemplate" hidden="true" movable="false" enableMouse="true">
+      <Scripts>
+          <OnLoad>self:RegisterForDrag("LeftButton");</OnLoad>
+          <OnDragStart>self:StartMoving();</OnDragStart>
+          <OnDragStop>self:StopMovingOrSizing();</OnDragStop>
+         </Scripts>
     <Size x="300" y="400" />
     <Anchors>
       <Anchor point="LEFT" relativeTo="UIParent" relativePoint="RIGHT" x="0" y="0" />
@@ -115,16 +120,7 @@
         <Scripts>
           <OnClick> ScanButtonClick(); </OnClick>
         </Scripts>
-      </Button>
-      <Button name="VStoreButton" inherits="UIPanelButtonTemplate" text="Store Scan" enabled="false">
-        <Size x="100" y="21" />
-        <Anchors>
-          <Anchor point="BOTTOMRIGHT" relativeTo="VScansFrame" relativePoint="TOPRIGHT" />
-        </Anchors>
-        <Scripts>
-          <OnClick> StoreButtonClick(); </OnClick>
-        </Scripts>
-      </Button>
+      </Button>      
     </Frames>
   </Frame>
 </Ui>

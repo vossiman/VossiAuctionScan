@@ -43,31 +43,34 @@ function initializeStatus()
     statusbar:SetValue(0)
     statusbar.value:SetText("0%")
 
-    storeBtn = _G["VStoreButton"]
-    storeBtn:SetEnabled(false)
-
     scanBtn = _G["VScanButton"]
-    scanBtn:SetEnabled(true)
+    enableStartScan(true)
 end
 
 function ScanButtonClick()
     scanBtn = _G["VScanButton"]
-    storeBtn = _G["VStoreButton"]
 
     if (scanInProgress) then
         -- scan running, cancel it and reset button text
         CancelScan()
+        StoreScan()
         scanBtn:SetText("Start scan")        
     else
         ScanAuctionHouse()
-        scanBtn:SetText("Cancel Scan")   
-        storeBtn:SetEnabled(false)     
+        scanBtn:SetText("Cancel Scan")           
     end
 end
 
-function StoreButtonClick()
-    storeBtn = _G["VStoreButton"]
-    storeBtn:SetEnabled(false)
+function enableStartScan(enable)
+    scanBtn = _G["VScanButton"]
+    if (VStoredScansCount<10 and enable) then        
+        scanBtn:SetEnabled(true)
+    else 
+        scanBtn:SetEnabled(false)
+    end
+end
+
+function StoreScan()
     local itemCount = table.getn(VCurrentScan)
     if (itemCount>0) then
         StoreScan()
@@ -164,8 +167,5 @@ function DeleteScan(scanTimestamp)
     pprint("Removing scan: "..scanTimestamp)
     table.removekey(VossiScanTable, scanTimestamp)
     ListScans()
-    if (VStoredScansCount<10) then
-        storeBtn = _G["VStoreButton"]
-        storeBtn:SetEnabled(true)
-    end
+    enableStartScan(true)
 end
